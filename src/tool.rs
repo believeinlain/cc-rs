@@ -78,7 +78,7 @@ impl Tool {
     ) -> Self {
         fn detect_family_inner(path: &Path, cargo_output: &CargoOutput) -> ToolFamily {
             let mut cmd = Command::new(path);
-            cmd.arg("--version");
+            cmd.arg("-v");
 
             let stdout = match run_output(
                 &mut cmd,
