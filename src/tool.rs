@@ -78,7 +78,7 @@ impl Tool {
     ) -> Self {
         fn detect_family_inner(path: &Path, cargo_output: &CargoOutput) -> ToolFamily {
             let mut cmd = Command::new(path);
-            cmd.arg("-v");
+            cmd.arg("--version");
 
             let stdout = match run_output(
                 &mut cmd,
@@ -102,10 +102,10 @@ impl Tool {
                 ToolFamily::Gnu
             } else {
                 // --version doesn't include clang for GCC
-                cargo_output.print_warning(&format_args!(
-                    "Compiler version doesn't include clang or GCC: {:?}",
-                    cmd
-                ));
+                // cargo_output.print_warning(&format_args!(
+                //     "Compiler version doesn't include clang or GCC: {:?}",
+                //     cmd
+                // ));
                 ToolFamily::Gnu
             }
         }
